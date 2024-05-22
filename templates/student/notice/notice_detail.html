@@ -1,0 +1,33 @@
+{% load static %}
+{% include 'student/layout/layout.html' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/drm.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="main-title">
+            <h1>공지사항 상세</h1>
+        </div>
+        <div class="background one-page">
+            <div class="detail-wrap">
+                <div class="detail-title">
+                    <h1>{{ object.title }}</h1>
+                    <p class="date">{{ object.created_date }}</p>
+                </div>
+                <div class="detail-content">
+                    <p>
+                        {{ object.content|linebreaksbr }}
+                    </p>
+                </div>
+                {% include "common/layout/post_image.html" %}
+            </div>
+            {% include "common/layout/post_file.html" %}
+            <div class="bottom-btn-wrap">
+                <button type="button" class="btn btn-secondary medium-btn solid-btn"
+                        onclick="location.href='{% url 'student:curriculum' subject_id type_id %}'">
+                    목록
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
